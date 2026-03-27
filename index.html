@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>A Heartfelt Thank You — Sir Jonald</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E8D5A0;
+      --gold-pale: #F9F3E3;
+      --blue-pale: #EAF2FA;
+      --blue-soft: #BDDAEE;
+      --ink: #2C2C2C;
+      --ink-light: #5A5A5A;
+      --white: #FEFEFE;
+      --cream: #FBF8F2;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── PARTICLE CANVAS ── */
+    #particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: .45;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 30%, rgba(189,218,238,.55) 0%, transparent 65%),
+        radial-gradient(ellipse 60% 50% at 80% 70%, rgba(201,168,76,.18) 0%, transparent 60%),
+        linear-gradient(160deg, #f7f2ea 0%, #eaf2fa 50%, #fdf8f0 100%);
+      z-index: 1;
+    }
+
+    /* Soft ornamental ring */
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,168,76,.22);
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      animation: breathe 6s ease-in-out infinite;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 850px; height: 850px;
+      border-radius: 50%;
+      border: 1px solid rgba(189,218,238,.35);
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      animation: breathe 6s ease-in-out infinite reverse;
+    }
+
+    @keyframes breathe {
+      0%,100% { transform: translate(-50%,-50%) scale(1); opacity:.6; }
+      50%      { transform: translate(-50%,-50%) scale(1.06); opacity:1; }
+    }
+
+    .hero-badge {
+      font-family: 'DM Sans', sans-serif;
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(201,168,76,.10);
+      border: 1px solid rgba(201,168,76,.30);
+      padding: .45rem 1.2rem;
+      border-radius: 99px;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp .8s .3s forwards;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -.01em;
+      color: var(--ink);
+      margin-bottom: 1.2rem;
+      opacity: 0;
+      animation: fadeUp .9s .5s forwards;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-subtitle {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      font-weight: 300;
+      letter-spacing: .08em;
+      color: var(--ink-light);
+      margin-bottom: 3.5rem;
+      opacity: 0;
+      animation: fadeUp .9s .7s forwards;
+    }
+
+    .hero-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      opacity: 0;
+      animation: fadeUp .9s .9s forwards;
+    }
+    .hero-divider span {
+      width: 60px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold));
+    }
+    .hero-divider span:last-child {
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+    .hero-divider .dot {
+      width: 6px; height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      width: auto; height: auto;
+      font-size: 1.4rem;
+      color: var(--gold);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .5rem;
+      opacity: 0;
+      animation: fadeUp .9s 1.4s forwards;
+      color: var(--ink-light);
+      font-size: .7rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    .scroll-hint .arrow {
+      width: 1px; height: 40px;
+      background: linear-gradient(180deg, var(--gold), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%,100% { opacity: .4; transform: scaleY(1); }
+      50%      { opacity: 1;  transform: scaleY(1.15); }
+    }
+
+    /* ── LETTER SECTION ── */
+    .letter-section {
+      position: relative;
+      z-index: 1;
+      padding: 6rem 1.5rem 8rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .section-label {
+      font-size: .7rem;
+      font-weight: 500;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 4rem;
+      opacity: 0;
+      transition: opacity .8s, transform .8s;
+      transform: translateY(20px);
+    }
+    .section-label.visible { opacity: 1; transform: translateY(0); }
+
+    /* Letter card */
+    .letter-card {
+      max-width: 760px;
+      width: 100%;
+      background: var(--white);
+      border-radius: 4px;
+      box-shadow:
+        0 2px 4px rgba(0,0,0,.04),
+        0 12px 40px rgba(0,0,0,.07),
+        0 0 0 1px rgba(201,168,76,.12),
+        inset 0 1px 0 rgba(255,255,255,.8);
+      padding: clamp(2.5rem, 6vw, 5rem) clamp(2rem, 6vw, 5rem);
+      position: relative;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s .2s, transform 1s .2s;
+    }
+    .letter-card.visible { opacity: 1; transform: translateY(0); }
+
+    /* Gold top accent bar */
+    .letter-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 10%; right: 10%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      border-radius: 0 0 2px 2px;
+    }
+
+    /* Subtle paper texture lines */
+    .letter-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 4px;
+      background-image: repeating-linear-gradient(
+        transparent, transparent 27px,
+        rgba(201,168,76,.045) 27px, rgba(201,168,76,.045) 28px
+      );
+      pointer-events: none;
+    }
+
+    /* Wax-seal ornament */
+    .seal {
+      position: absolute;
+      top: -22px; right: clamp(2rem,6vw,5rem);
+      width: 44px; height: 44px;
+      background: linear-gradient(135deg, var(--gold), #A8832A);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 16px rgba(201,168,76,.4);
+      z-index: 2;
+    }
+
+    .letter-date {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: .9rem;
+      font-style: italic;
+      color: var(--gold);
+      letter-spacing: .05em;
+      margin-bottom: 2.2rem;
+      position: relative; z-index: 1;
+    }
+
+    .letter-salutation {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 3vw, 1.8rem);
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 1.8rem;
+      position: relative; z-index: 1;
+    }
+
+    .letter-body {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.05rem, 2vw, 1.22rem);
+      font-weight: 400;
+      line-height: 1.95;
+      color: #3a3a3a;
+      position: relative; z-index: 1;
+    }
+
+    .letter-body p { margin-bottom: 1.4em; }
+    .letter-body p:last-of-type { margin-bottom: 0; }
+
+    .letter-body .highlight {
+      font-style: italic;
+      color: var(--ink);
+      position: relative;
+    }
+    .letter-body .highlight::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: 1px; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold-light), transparent);
+    }
+
+    .letter-closing {
+      margin-top: 3rem;
+      position: relative; z-index: 1;
+    }
+    .letter-closing .close-line {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--ink-light);
+      margin-bottom: .6rem;
+    }
+    .letter-closing .signature {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 600;
+      font-style: italic;
+      color: var(--ink);
+      letter-spacing: .02em;
+      line-height: 1;
+    }
+    .letter-closing .from-label {
+      font-size: .72rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: .4rem;
+    }
+
+    /* divider between salutation and body */
+    .letter-rule {
+      width: 40px; height: 1px;
+      background: var(--gold-light);
+      margin: 0 0 1.8rem;
+      position: relative; z-index: 1;
+    }
+
+    /* ── QUOTE BAND ── */
+    .quote-band {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 760px;
+      margin-top: 4rem;
+      padding: 2.5rem 3rem;
+      background: linear-gradient(135deg, rgba(201,168,76,.08), rgba(189,218,238,.15));
+      border-left: 3px solid var(--gold);
+      border-radius: 0 4px 4px 0;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: opacity 1s .4s, transform 1s .4s;
+    }
+    .quote-band.visible { opacity: 1; transform: translateX(0); }
+
+    .quote-band blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--ink);
+      line-height: 1.75;
+      margin: 0;
+    }
+    .quote-band cite {
+      display: block;
+      margin-top: .9rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .78rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-style: normal;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative; z-index: 1;
+      padding: 3rem 2rem;
+      text-align: center;
+      border-top: 1px solid rgba(201,168,76,.15);
+      background: linear-gradient(180deg, transparent, rgba(201,168,76,.04));
+    }
+    footer p {
+      font-size: .78rem;
+      font-weight: 400;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+    }
+    footer p span { color: var(--gold); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .hero::before { width: 320px; height: 320px; }
+      .hero::after  { width: 480px; height: 480px; }
+      .quote-band { padding: 1.8rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Particle canvas -->
+<canvas id="particles"></canvas>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <span class="hero-badge">A Message of Gratitude</span>
+
+  <h1 class="hero-title">A Heartfelt<br><em>Thank You</em></h1>
+
+  <p class="hero-subtitle">A special message for <strong>Sir Jonald</strong></p>
+
+  <div class="hero-divider">
+    <span></span>
+    <span class="dot">✦</span>
+    <span></span>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Read the letter</span>
+    <div class="arrow"></div>
+  </div>
+</section>
+
+<!-- ── LETTER ── -->
+<section class="letter-section">
+
+  <div class="section-label observe">— With Sincerity —</div>
+
+  <div class="letter-card observe">
+    <div class="seal">✉</div>
+
+    <p class="letter-date">March 2026</p>
+    <h2 class="letter-salutation">Dear Sir Jonald,</h2>
+    <div class="letter-rule"></div>
+
+    <div class="letter-body">
+      <p>
+        There are people who simply teach, and then there are people who 
+        <span class="highlight">change the way you see the world</span>. 
+        You, Sir Jonald, are undeniably the latter.
+      </p>
+
+      <p>
+        From the very first day you walked into the room, I sensed something 
+        different — a teacher who truly cared, not just about the lessons on the 
+        board, but about the person sitting behind each desk. You noticed when we 
+        struggled. You celebrated when we grew. And you never made us feel small 
+        for not knowing something yet.
+      </p>
+
+      <p>
+        Your patience is something I will carry with me for the rest of my life. 
+        On days when I was ready to give up, your quiet encouragement reminded me 
+        that progress doesn't always announce itself loudly — sometimes it's simply 
+        taking one more step when everything in you wants to stop. <span class="highlight">You taught me to keep going.</span>
+      </p>
+
+      <p>
+        Beyond the lessons, you gave me something far more lasting: the confidence 
+        to believe in my own potential. You saw something in me before I could see 
+        it in myself, and that kind of faith from a teacher is a gift that no 
+        amount of words can fully repay.
+      </p>
+
+      <p>
+        As I move forward — into whatever future lies ahead — I will bring with me 
+        the values you modeled every single day: curiosity, integrity, and 
+        compassion. The seeds you planted in this classroom will grow long after 
+        I've left these halls.
+      </p>
+
+      <p>
+        Thank you, Sir Jonald. Not just for being a great teacher, but for being 
+        <span class="highlight">someone worth looking up to.</span>
+      </p>
+    </div>
+
+    <div class="letter-closing">
+      <p class="close-line">With the deepest gratitude,</p>
+      <div class="signature">Hubert</div>
+      <p class="from-label">— Your ICT 12-B Student</p>
+    </div>
+  </div>
+
+  <div class="quote-band observe">
+    <blockquote>
+      "A great teacher doesn't just fill a mind with knowledge — they kindle a 
+      fire that burns long after the lesson ends."
+    </blockquote>
+    <cite>— Inspired by the legacy of Sir Jonald</cite>
+  </div>
+
+</section>
+
+
+<script>
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [];
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  function randomRange(a, b) { return a + Math.random() * (b - a); }
+
+  class Particle {
+    constructor() { this.reset(true); }
+    reset(init = false) {
+      this.x  = randomRange(0, W);
+      this.y  = init ? randomRange(0, H) : H + 10;
+      this.r  = randomRange(1, 2.5);
+      this.vy = randomRange(-.25, -.55);
+      this.vx = randomRange(-.12, .12);
+      this.op = randomRange(.15, .55);
+      this.gold = Math.random() > .5;
+    }
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      if (this.y < -10) this.reset();
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      ctx.fillStyle = this.gold
+        ? `rgba(201,168,76,${this.op})`
+        : `rgba(189,218,238,${this.op})`;
+      ctx.fill();
+    }
+  }
+
+  for (let i = 0; i < 70; i++) particles.push(new Particle());
+
+  function loop() {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach(p => { p.update(); p.draw(); });
+    requestAnimationFrame(loop);
+  }
+  loop();
+
+  /* ── INTERSECTION OBSERVER (fade-in on scroll) ── */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.observe').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
